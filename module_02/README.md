@@ -58,3 +58,18 @@ __Q-A pair__: Q - predicate, except for last one that can be "else"
 3. An interpretation that describes the correspondence between information and data.
 4. One or more examples of the data.
 5. A template for a 1 argument function operating on data of this type.
+
+
+![](assets/README-e1aebf83.png)
+
+## Structure of Information Flows Through
+
+
+Program design is a Cross-product of data definition and function design.
+
+
+Identifying the structure of information is a key step in program Design:
+Structure: information -> data -> template -> function, tests
+
+Choice in structure of the data -> function
+Data driven approach. Another one (not in the How To code 2 parts) is where the control structure is dominant => blend templates based on control structure together with template based on type comments or templates based on form of data to produce the structure of the program.
