@@ -20,7 +20,9 @@ CTR-Y - middle of the screen
 ```
 
 big-bang is polimorphic:
-X - initial state, X->X, X-> Image
+```java
+X - initial state; X -> X; X -> Image
+```
 
 For any given use all X have to be the same.
 
