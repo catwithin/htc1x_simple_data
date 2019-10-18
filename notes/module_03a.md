@@ -1,18 +1,26 @@
 
-#Module 3a: How to design Worlds
+# Module 3a: How to design Worlds
+
+16-10-2019
 
 ## The big bang mechanism
 
 Data definition - what numbers represent (coordinates of a cat on the screen).
 
-```
+```racket
+(require 2htdp/image)
+(require 2htdp/universe)
+
+(define CTR-Y (/ HEIGHT 2)) ; single point of control using constants
+(define MTS (empty-scene WIDTH HEIGHT "midnight blue"))
+
 (place-image CAT-IMG 100 CTR-Y MTS)
 
 ```
 MTS - Empty screen
 CTR-Y - middle of the screen
 
-```java
+```racket
 (big-bang 0             ; Cat
   (on-tick next-cat)    ; Cat -> Cat
   (to-draw render-cat)  ; Cat -> Image
@@ -26,7 +34,7 @@ X - initial state; X -> X; X -> Image
 
 For any given use all X have to be the same.
 
-Big bang is a User interface framework. Behind the scenes it is calling f1 with the initial state, getting resulting X, passing it to f2, getting image, rendering the image, calling f1 with resulting X, etc.
+Big bang is a _User interface framework_. Behind the scenes it is calling f1 with the initial state, getting resulting X, passing it to f2, getting image, rendering the image, calling f1 with resulting X, etc.
 
 Another hooks: (on-key) - when button is pressed.
 
@@ -55,14 +63,31 @@ Big bang because it produces a World.
 
 2. Build the actual program
     1. Constants (based on 1.2 above)
+    ```racket
+
+    ; traceability - with the constants identified at design stage
+    ; important, bc we will have to change the program,
+
+    ```
     2. Data definitions using HtDD (based on 1.3 above)
+    ```racket
+
+    ;; Cat is number (Atomic)
+    ;; interp. x position of the cat in screen coordinates
+    ; elaborate on interpretation with comments for examples:
+    (define C1 0) ; left edge
+    (define C2 (/ WIDTH 2)) ; middle
+    (define C3 WIDTH) ; right edge
+
+    ```
     3. Functions using HtDF
         - main first (based on 1.3, 1.4 and 2.2 above)
-        - wish list entriesfor big-bang handlers
+        - wish list entries for big-bang handlers
     4. Work through wish list until done
 
+
 Template:
-```java
+```racket
 (require 2htdp/image)
 (require 2htdp/universe)
 
@@ -105,8 +130,19 @@ Template:
 (define (render ws) ...)
 ```
 
+
 Pieces of the solution + steps of the process => templates. Cross-cutting decomposition.
 
-##
+17-10-2019
+## Refactoring
 
-Only two types of programs: those that are not used and those that are constantly changing
+Clear correspondence between analysis of problem domain and the program implementation helps to incorporate changes - running them through the code.
+Analysis - wire-frames that professor draws - are an abbreviation = model of a program, it correctly describes the structure of the program, but has less detail. So it is easier to plan changes going through wire-frames.
+
+
+### Misc
+
+- Only two types of programs: those that are not used and those that are constantly changing
+- should use constants in examples - correct when constants change and examples are more clear
+- for large enums it's ok to do only white-box testing i.e. testing only as many enum cases as code requires
+- !!! - used as a TODO: marker

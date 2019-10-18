@@ -60,16 +60,65 @@ __Q-A pair__: Q - predicate, except for last one that can be "else"
 5. A template for a 1 argument function operating on data of this type.
 
 
+## Orthogonality of data structure and function design
 ![](assets/README-e1aebf83.png)
 
-## Structure of Information Flows Through
+Function recipes are orthogonal to the forms of data (orthogonal here as independent/cross-product). So program design is a Cross-product of data definition and function design.
+Orthogonality is great to get when you design programs. Here is an example of it in the design itself.
 
-
-Program design is a Cross-product of data definition and function design.
-
+### Structure of Information Flows Through
 
 Identifying the structure of information is a key step in program Design:
 Structure: information -> data -> template -> function, tests
 
-Choice in structure of the data -> function
-Data driven approach. Another one (not in the How To code 2 parts) is where the control structure is dominant => blend templates based on control structure together with template based on type comments or templates based on form of data to produce the structure of the program.
+__Data driven approach__: Choice in structure of the data impacts function design.
+Another one (not in the How To code 2 parts) is where the control structure is dominant => blend templates based on control structure together with template based on type comments or templates based on form of data to produce the structure of the program.
+
+
+## Types of data specifics
+
+### Data design for item type
+
+- One of: Itemisation -> (cond with subclause per one class of one of)
+- Q and A are formed by following the rules for type of data each of one-of is:
+  - atomic distinct: false
+  - atomic non-distinct Natural [1, 10]
+  - atomict distinct "complete"
+
+Mixed data itemisation: different types of data in items
+=> guard against being called on the wrong type of data = add type check
+
+### Assumptions
+
+Course assumes that functions r only passed arguments that r in its signature (~type checking), and in correct range, so it follows these two slack rules:
+
+1. If a given subclass is the last subclass of its type, can reduce the test to just the guard
+e.g.:
+
+```java
+[(number? c) (... c)]
+;; instead of
+[(and (number? c) (<= 1 c) (<= c 10)) (... c)]
+```
+2. If all remaining subclasses are of the same type, then can eliminate all of the guards
+
+This also means that it is allowed to use else as the last cond.
+
+### Tests
+
+Number of tests is dependent on type of data
+
+- #### on intervals
+
+If data type is interval => test closed boundaries, midpoint, some other particular behavior.
+
+However, if the behavior doesn't meaningfully vary across the interval => can use just one test
+
+- #### on enums
+
+At least as many test cases as there are enumerations
+
+## Misc
+
+- "fault injection" - checking that procedure catches a fault
+- ambiguity => Program design: from poorly formed problems to well-structured solutions
