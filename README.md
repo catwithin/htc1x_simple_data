@@ -13,4 +13,9 @@ __2.__ [Data Design Recipe](notes/module_02.md)
 
 __3.a.__ [How to design Worlds](notes/module_03a.md)
 
+__3.b.__ [Compound data and cons](notes/module_03b.md)
+
+__4.a.__ [Lists and natural recursion](notes/module_04a.md)
+
+
 ### [Summary](notes/summary.md)
